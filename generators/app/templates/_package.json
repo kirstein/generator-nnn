@@ -1,0 +1,17 @@
+{
+  "name": "<%= slugName %>",
+  "version": "0.0.0",
+  "description": "<%= description %>",
+  "scripts": {
+    "test": "./node_modules/jest-cli/bin/jest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:<%= githubUser %>/<%= slugName %>.git"
+  },
+  "main": "./<%= main %>",
+  "devDependencies": {
+    "jest-cli": "^0.5.0"
+  },
+  "license": "<%= licence %>"
+}
