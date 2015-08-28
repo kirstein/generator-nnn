@@ -15,10 +15,12 @@ describe('nnn:app', function () {
 
   it('creates files', function () {
     assert.file([
-      'bower.json',
       'package.json',
+      '.travis.yml',
       '.editorconfig',
-      '.jshintrc'
+      '.jshintrc',
+      '.gitignore',
+      'README.md'
     ]);
   });
 });
