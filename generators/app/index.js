@@ -104,6 +104,10 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_gitignore'),
         this.destinationPath('.gitignore')
       );
+      this.fs.copy(
+        this.templatePath('nvmrc'),
+        this.destinationPath('.nvmrc')
+      );
     },
 
     bin: function () {
