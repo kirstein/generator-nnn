@@ -31,10 +31,14 @@ module.exports = yeoman.generators.Base.extend({
       name: 'licence',
       message: 'License',
       default: 'MIT'
-
     }, {
       name: 'githubUser',
       message: 'GitHub username'
+    }, {
+      type: 'confirm',
+      name: 'bin',
+      message: 'Create executable?',
+      default: true
     }];
 
     this.prompt(prompts, function (props) {
@@ -44,6 +48,7 @@ module.exports = yeoman.generators.Base.extend({
       this.slugName    = slug(this.moduleName);
       this.licence     = props.licence || '';
       this.description = props.description || '';
+      this.bin         = props.bin;
       done();
     }.bind(this));
   },
@@ -58,7 +63,8 @@ module.exports = yeoman.generators.Base.extend({
           slugName: this.slugName,
           description: this.description,
           githubUser: this.githubUser,
-          licence: this.licence
+          licence: this.licence,
+          bin: this.bin
         }
       );
     },
@@ -100,6 +106,20 @@ module.exports = yeoman.generators.Base.extend({
       );
     },
 
+    bin: function () {
+      if (!this.bin) {
+        return;
+      }
+      this.fs.copyTpl(
+        this.templatePath('bin/app.js'),
+        this.destinationPath('bin/' + this.slugName + '.js'),
+        {
+          camelName: camelCase(this.slugName),
+          main: this.main
+        }
+      );
+    },
+
     readme: function () {
       this.fs.copyTpl(
         this.templatePath('_README.md'),
@@ -109,7 +129,8 @@ module.exports = yeoman.generators.Base.extend({
           description: this.description,
           githubUser: this.githubUser,
           licence: this.licence,
-          moduleName: this.moduleName
+          moduleName: this.moduleName,
+          bin: this.bin
         }
       );
     }

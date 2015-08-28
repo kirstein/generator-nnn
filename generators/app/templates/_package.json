@@ -5,6 +5,11 @@
   "scripts": {
     "test": "./node_modules/jest-cli/bin/jest.js"
   },
+  <% if (bin) { %>
+  "bin": {
+    "<%= slugName %>": "./bin/<%= slugName %>.js"
+  },
+  <% } %>
   "repository": {
     "type": "git",
     "url": "git@github.com:<%= githubUser %>/<%= slugName %>.git"

@@ -6,7 +6,6 @@
 
 `npm install <%= slugName %>`
 
-
 ### Testing 
 
 ```bash
